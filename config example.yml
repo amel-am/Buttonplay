@@ -1,0 +1,7 @@
+token: ""  # Your bot´s token, this is required, the token is used to start the discord bot. Do not share it with anyone!
+prefix: "" # Your bot´s prefix, this is optional
+debug_guilds: [] # The server(s) that should have slash commands registered, you can put the ids in the brackets but separated by a comma. E.g [906668650998689852,95537591998689878]
+switchip:  # Your ip of the nintendo switch, can be seen by going into the album and clicking Y
+status: "" # The status of the bot once started, if you want you can change it to whatever you would like your bot´s status to be
+delay: 1 # Delay (in seconds) Its purpose is to show the current state instead of showing the state too early. Here you can change it if you want but 1 second is what I recommend for the best experience.
+url: "" # This is optional, its only there in case you want it to be in video format and not photo!

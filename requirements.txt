@@ -1,0 +1,5 @@
+anyio==3.6.2
+colorama==0.4.6
+disnake==2.7.0
+loguru==0.6.0
+PyYAML==6.0
