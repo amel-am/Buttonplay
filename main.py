@@ -4,10 +4,10 @@ from loguru import logger
 from disnake.ext import commands
 from src.commands import Control
 from src.errors import Error
-from src.yaml import prefix, token, status, guild, connect
+from src.yaml import owner_id, token, status, guild, connect
 
 bot = commands.Bot(command_sync_flags=commands.CommandSyncFlags.default(), test_guilds=guild,
-                   command_prefix=prefix, help_command=None, activity=disnake.Game(status), intents=disnake.Intents.all())
+                   owner_id=owner_id, help_command=None, activity=disnake.Game(status), intents=disnake.Intents.all())
 
 
 @bot.event
