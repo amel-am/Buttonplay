@@ -7,7 +7,7 @@ from src.errors import Error
 from src.yaml import owner_id, token, status, guild, connect
 
 bot = commands.Bot(command_sync_flags=commands.CommandSyncFlags.default(), test_guilds=guild,
-                   owner_id=owner_id, help_command=None, activity=disnake.Game(status), intents=disnake.Intents.all())
+                   owner_id=int(owner_id), help_command=None, activity=disnake.Game(status), intents=disnake.Intents.all())
 
 
 @bot.event
