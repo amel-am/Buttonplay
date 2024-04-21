@@ -10,7 +10,7 @@ class Control(commands.Cog):
         self.bot = bot
 
     @commands.is_owner()
-    @commands.slash_command(name="buttonplayswitch", description="Buttonplay", dm_permission=True)
+    @commands.slash_command(name="Buttonplay", description="Sends an embed with buttons")
     async def button_play(self, interaction: ApplicationCommandInteraction):
         switch_buttons = SwitchButtons()
         embed = await create_embed()
@@ -20,7 +20,7 @@ class Control(commands.Cog):
             await interaction.response.send_message(embed=embed, view=switch_buttons)
 
     @commands.is_owner()
-    @commands.slash_command()
+    @commands.slash_command(name="Quit", description="Stops the bot and detaches controllers")
     async def quit(self, interaction: ApplicationCommandInteraction):
         await connect.send("detachController")
         await interaction.response.send_message("until next time!")
