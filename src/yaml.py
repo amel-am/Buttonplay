@@ -5,7 +5,7 @@ with open("config.yml", "r") as f:
     load = yaml.safe_load(f)
     token = load["token"]
     status = load["status"]
-    prefix = load["prefix"]
+    owner_id = load["owner_id"]
     switchip = load["switchip"]
     guild = load["debug_guilds"]
     url = load["url"]
