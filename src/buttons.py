@@ -1,7 +1,7 @@
 import disnake
 import asyncio
 from io import BytesIO
-from src.yaml import connect, delay
+from src.yaml import connect, delay, owner_id
 from src.helper_funcs import edit_embed
 
 
@@ -9,6 +9,13 @@ class SwitchButtons(disnake.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
         self._amount = 1
+
+    async def interaction_check(self, interaction):
+        if interaction.author.id != int(owner_id):
+            await interaction.response.send_message("You are not the owner of the bot, thus not allowing you to control the owner's switch!")
+            return False
+        else:
+            return True
 
     async def _amount_clicks(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
         await interaction.response.defer()
@@ -100,6 +107,8 @@ class SwitchButtons(disnake.ui.View):
 
     @disnake.ui.button(custom_id="19", emoji="🎮", label="game info", style=disnake.ButtonStyle.primary, row=4)
     async def button_game(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
+        if interaction.author.id != int(owner_id):
+            return
         await edit_embed(button, interaction, view=self)
         try:
             embed = disnake.Embed(
@@ -128,7 +137,7 @@ class SwitchButtons(disnake.ui.View):
 
     @disnake.ui.button(custom_id="20", label="🕹️ Stick Control Panel", style=disnake.ButtonStyle.blurple, row=4)
     async def button_stick_panel(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
-        await edit_embed(button, interaction, view=self._switch_sticks)
+        await edit_embed(button, interaction, view=SwitchSticks())
 
     @disnake.ui.button(custom_id="21", label="amount of clicks: 1", style=disnake.ButtonStyle.blurple, row=4)
     async def button_add_clicks(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
@@ -148,6 +157,13 @@ class SwitchSticks(disnake.ui.View):
         super().__init__(timeout=None)
         self._direction = "LEFT"
         self._seconds = 1
+
+    async def interaction_check(self, interaction):
+        if interaction.author.id != int(owner_id):
+            await interaction.response.send_message("You are not the owner of the bot, thus not allowing you to control the owner's switch!")
+            return False
+        else:
+            return True
 
     @disnake.ui.button(custom_id="1", emoji="🕹️", label="Buttons Control Panel", style=disnake.ButtonStyle.blurple, row=1)
     async def button_stick_panel(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
